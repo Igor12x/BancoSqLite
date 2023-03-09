@@ -66,6 +66,17 @@ public class BancoDeDados extends SQLiteOpenHelper {
             return false;
         }
     }
+    public boolean remover(int id){
+        SQLiteDatabase conexao = getWritableDatabase();
+        //O método delete também retorna a quantidade de Linhas removidas
+        if (conexao.delete("produtos", "_id = ?", new String[]{id + ""}) != 0){
+            conexao.close();
+            return true;
+        }else {
+            conexao.close();
+            return  false;
+        }
+    }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
